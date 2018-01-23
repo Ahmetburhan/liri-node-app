@@ -76,7 +76,14 @@ function spotifyThis() {
 
 function myTweets() {
     var client = new twitter(keys.twitterKeys);
-    client.get("statuses/user_timeline", "ahmetburhan", function (err, tweet, response) {
+    // Twitter parameters
+    var isInputNull = userInput === "" ? userInput = "ahmetburhan" : userInput = userInput;
+
+    var params = {
+        "screen_name": userInput,
+        "count": 20
+    }
+    client.get("statuses/user_timeline", params, function (err, tweet, response) {
         if (err) {
             return console.log(err);
         } else {
